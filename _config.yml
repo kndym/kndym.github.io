@@ -2,13 +2,13 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: kndym # the website title (if blank, full name will be used instead)
+title: Kevin Ndayishimiye # the website title (if blank, full name will be used instead)
 first_name: Kevin
 middle_name: M.
 last_name: Ndayishimiye
 email: kevin.nday12@gmail.com
 contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
+  Best way to get in touch is by my email.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 footer_text: >
@@ -265,8 +265,8 @@ display_categories: ["external-services"] # these categories will be displayed o
 # -----------------------------------------------------------------------------
 
 scholar:
-  last_name: [Einstein]
-  first_name: [Albert, A.]
+  last_name: [Ndayishimiye]
+  first_name: [Kevin, N.]
 
   style: apa
   locale: en
