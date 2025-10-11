@@ -8,10 +8,7 @@ profile:
   align: right
   image: grad.png
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>Email: <a href="mailto:kevin.nday12@gmail.com">kevin.nday12@gmail.com</a></p>
-    <p>Student Researcher at <a href="https://www.hbcuquantumcenter.org/">HBCU IBM Quantum Center</a></p>
-    <p>Tutor at <a href="https://hu-ms2.org/">HU Middle School for Math and Science</a></p>
+
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
