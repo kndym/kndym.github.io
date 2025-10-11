@@ -6,7 +6,7 @@ subtitle: Sophomore Computer Science Major @ Howard University
 
 profile:
   align: right
-  image: grad.png
+  image: 1.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>Email: <a href="mailto:kevin.nday12@gmail.com">kevin.nday12@gmail.com</a></p>
