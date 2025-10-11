@@ -6,7 +6,7 @@ subtitle: Sophomore Computer Science Major @ Howard University
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: grad.png
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>Email: <a href="mailto:kevin.nday12@gmail.com">kevin.nday12@gmail.com</a></p>
@@ -34,5 +34,5 @@ I am **Kevin Ndayishimiye**, a sophomore undergraduate at **Howard University** 
 
 My research interests primarily lie in the intersection of **Applied Mathematics and Statistics**. Currently, I am focused on developing **Spatially Smoothed Ecological Inference Models**, contributing to more robust and accurate statistical analysis of aggregated data.
 
-Beyond my core coursework, I serve as a Student Researcher at the **HBCU IBM Quantum Center at Howard University**, where I explore emerging applications in quantum computing. I am deeply committed to education and community outreach, which I express through my role as a middle school tutor at the [Howard University Middle School for Mathematics and Science (MS)²](https://hu-ms2.org/).
+Beyond my core coursework, I serve as a Student Researcher at the [HBCU IBM Quantum Center at Howard University](https://www.hbcuquantumcenter.org/), where I explore emerging applications in quantum computing. I am deeply committed to education and community outreach, which I express through my role as a middle school tutor at the [Howard University Middle School for Mathematics and Science (MS)²](https://hu-ms2.org/).
 
