@@ -6,7 +6,7 @@ subtitle: Sophomore Computer Science Major @ Howard University
 
 profile:
   align: right
-  image: grad.png
+  image: grad.jpg
   image_circular: false # crops the image to make it circular
 
 

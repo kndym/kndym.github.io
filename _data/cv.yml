@@ -2,96 +2,94 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
+      value: Kevin Ndayishimiye
+    - name: Phone
+      value: 716-424-6256
+    - name: Email
+      value: kevin.nday12@gmail.com
+    - name: LinkedIn
+      value: linkedin.com/in/kevinnday/
+    - name: GitHub
+      value: github.com/kndym
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: B.S. in Computer Science
+      institution: Howard University, Washington, D.C.
+      year: Aug 2024 -- May 2028
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
-      description:
-        - Description 1.
-        - Description 2.
+        - Presidential Scholar, Minors in Math, Physics.
+        - GPA: 3.8
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Data Analytics Intern
+      institution: Castner Incorporated
+      year: Aug 2023 -- Aug 2025
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Contributed to academic research on disaster relief, focusing on preparedness for older adults and African American/Black communities.
+        - Wrote programs in R to manage and analyze the Federal Emergency Management Agency (FEMA) National Household Survey database.
+        - Developed accessible explanations of machine learning concepts for general audiences.
+    - title: Youth Coordinator
+      institution: East Side Parkways Coalition
+      year: Oct 2023 -- Present
       description:
-        - Description 1.
-        - Description 2.
+        - Canvassed thousands of community members to build support for the restoration of Humboldt Parkway.
+        - Fundraised hundreds of thousands of dollars to support a legal battle with the New York State Department of Transportation (NYSDOT).
+        - Successfully won an injunction that required an Environmental Impact Statement (EIS) from the NYSDOT.
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
+- title: Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: Prediction Market Arbitrage Tracker
+      institution: Python, WSS, REST API
+      year: May 2025 -- July 2025
+      description:
+        - Utilized WebSocket (WSS) and REST APIs to stream real-time order book data from prediction markets like Kalshi and Polymarket.
+        - Engineered a system to compare order books and execute trades based on identified pricing inefficiencies.
+    - title: SpadesAI
+      institution: Python, C++, TensorFlow, Scikit-learn, ONNX
+      year: July 2025 -- Present
+      description:
+        - Developed a non-deterministic algorithm for playing the card game Spades, using a combination of deep learning and Monte Carlo Tree Search (MCTS).
+        - Achieved a 2100 Elo rating in Competitive Online Spades games.
+    - title: UrbanClass
+      institution: Python, QGis, Pandas
+      year: Jan 2025 -- March 2025
+      description:
+        - Built a system to classify communities as urban, suburban, or rural based on both self-identification and data markers.
+        - The classification data is being used to help build election models for the 2026 and 2028 U.S. elections.
+    - title: Avatar Platform Fighter
+      institution: GDScript, JavaScript, HTML
+      year: March 2025
+      description:
+        - Collaborated an in a team of four to create Avatar: The Last Airbender themed platform fighting game for the 2025 BisonBytes Hackathon.
+        - Specific role was writing the core game logic in GDScript and JavaScript.
 
-- title: Honors and Awards
+- title: Publications
   type: time_table
   contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
+    - title: Co-author Disaster Preparedness Interventions via Machine Learning on FEMA National Household Survey Data
+      institution: International Journal of Environmental Research and Public Health
+      year: May 2024
+      description:
+        - Contributed to a machine learning model that identified key factors in household disaster preparedness for older adults and African American/Black communities. The model analyzed 252 variables from over 15,000 participants in the FEMA National Household Survey. The findings highlighted the need for targeted interventions to support financial resilience and equitable resource access.
+        - The full publication can be viewed here: https://pmc.ncbi.nlm.nih.gov/articles/PMC11121406/
 
-- title: Academic Interests
+- title: Technical Skills
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: Languages
       items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+        - Python, C++, R, Java, GDScript, JavaScript, HTML/CSS, SQL
+    - title: Web / APIs
       items:
-        - Description 1.
-        - Description 2.
-
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+        - REST, WSS (WebSocket)
+    - title: Developer Tools
+      items:
+        - Git, GitHub, QGis, VS Code, Visual Studio
+    - title: Libraries
+      items:
+        - Pandas, NumPy, Matplotlib, TensorFlow, Scikit-learn, ONNX
