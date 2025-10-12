@@ -6,8 +6,8 @@ subtitle: Sophomore Computer Science Major @ Howard University
 
 profile:
   align: right
-  image: grad.jpg
-  image_circular: false # crops the image to make it circular
+  image: 1.jpg
+  image_circular: true # crops the image to make it circular
 
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
