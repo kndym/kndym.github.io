@@ -24,7 +24,6 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 
 
-profile: true # profile photo and social links will be shown
 ---
 
 I am **Kevin Ndayishimiye**, a sophomore undergraduate at **Howard University** pursuing a major in Computer Science with minors in Mathematics and Physics. I am also honored to be a **Presidential Scholar** at the university.
