@@ -1423,3 +1423,48 @@ figure.cover {
     color: #23212d !important;
   }
 }
+
+// Voting map dropdown styling
+.voting-map-controls {
+  .form-select {
+    color: var(--global-text-color);
+    background-color: var(--global-bg-color);
+    border: 1px solid var(--global-divider-color);
+    border-radius: 6px;
+    padding: 8px 12px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &:focus {
+      border-color: var(--global-theme-color);
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.1);
+    }
+
+    &:hover {
+      border-color: var(--global-theme-color);
+    }
+
+    option {
+      color: var(--global-text-color);
+      background-color: var(--global-bg-color);
+    }
+  }
+}
+
+// Leaflet popup styling - ensure black text regardless of theme
+.leaflet-popup-content-wrapper {
+  color: black !important;
+}
+
+.leaflet-popup-content {
+  color: black !important;
+
+  * {
+    color: black !important;
+  }
+
+  strong {
+    color: black !important;
+  }
+}
