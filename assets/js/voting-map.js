@@ -115,7 +115,7 @@
     if (csvData) return csvData;
     
     const baseUrl = getBaseUrl();
-    const csvUrl = `${baseUrl}/assets/data/ny_estimates.csv`;
+    const csvUrl = `${baseUrl}/assets/data/estimates.csv`;
     
     try {
       const response = await fetch(csvUrl);
@@ -146,24 +146,25 @@
   // Calculate metric value
   function calculateMetric(race, metric, row) {
     const racePrefix = RACES[race].prefix;
-    const demField = `D_${racePrefix}_prob`;
-    const repField = `R_${racePrefix}_prob`;
-    const otherField = `O_${racePrefix}_prob`;
-    const nonVoterField = `N_${racePrefix}_prob`;
+    const demField = `votes_D_${racePrefix}`;
+    const repField = `votes_R_${racePrefix}`;
+    const otherField = `votes_O_${racePrefix}`;
+    const nonVoterField = `votes_N_${racePrefix}`;
 
     const dem = parseFloat(row[demField]) || 0;
     const rep = parseFloat(row[repField]) || 0;
     const other = parseFloat(row[otherField]) || 0;
     const nonVoter = parseFloat(row[nonVoterField]) || 0;
-    const total = dem + rep + other + nonVoter;
-
-    if (total === 0) return null;
 
     if (metric === 'margin') {
-      // Margin = (Dem - Rep) / Total
-      return (dem - rep) / total;
+      // Margin = (Dem - Rep) / (Dem + Rep + Other) - excluding non-voters from denominator
+      const totalVotes = dem + rep + other;
+      if (totalVotes === 0) return null;
+      return (dem - rep) / totalVotes;
     } else {
-      // Turnout = (Dem + Rep + Other) / Total * 100
+      // Turnout = (Dem + Rep + Other) / (Dem + Rep + Other + NonVoter) * 100
+      const total = dem + rep + other + nonVoter;
+      if (total === 0) return null;
       return ((dem + rep + other) / total) * 100;
     }
   }
@@ -311,29 +312,85 @@
 
     const value = calculateMetric(currentRace, currentMetric, row);
     const racePrefix = RACES[currentRace].prefix;
-    const demField = `D_${racePrefix}_prob`;
-    const repField = `R_${racePrefix}_prob`;
-    const otherField = `O_${racePrefix}_prob`;
+    const demField = `votes_D_${racePrefix}`;
+    const repField = `votes_R_${racePrefix}`;
+    const otherField = `votes_O_${racePrefix}`;
+    const nonVoterField = `votes_N_${racePrefix}`;
 
-    const metricLabel = currentMetric === 'margin' ? 'Margin' : 'Turnout %';
-    const metricValue = value !== null && isFinite(value)
-      ? (currentMetric === 'margin' ? value.toFixed(3) : value.toFixed(1) + '%')
-      : 'N/A';
+    if (currentMetric === 'margin') {
+      // Margin map: Show Dem, Rep, and Other with counts, percentages, and winner
+      const dem = parseFloat(row[demField]) || 0;
+      const rep = parseFloat(row[repField]) || 0;
+      const other = parseFloat(row[otherField]) || 0;
+      const totalVotes = dem + rep + other;
 
-    // Convert probabilities to percentages (multiply by 100)
-    const demPercent = ((parseFloat(row[demField]) || 0) * 100).toFixed(1);
-    const repPercent = ((parseFloat(row[repField]) || 0) * 100).toFixed(1);
-    const otherPercent = ((parseFloat(row[otherField]) || 0) * 100).toFixed(1);
+      if (totalVotes === 0) {
+        return `<div style="color: black !important;"><strong>${countyName}, Block Group ${blockGroup}</strong><br/>No votes</div>`;
+      }
 
-    return `
-      <div style="color: black !important;">
-        <strong>${countyName}, Block Group ${blockGroup}</strong><br/>
-        <strong>${metricLabel}:</strong> ${metricValue}<br/>
-        <strong>Dem %:</strong> ${demPercent}%<br/>
-        <strong>Rep %:</strong> ${repPercent}%<br/>
-        <strong>Other %:</strong> ${otherPercent}%
-      </div>
-    `;
+      const demPercent = ((dem / totalVotes) * 100).toFixed(1);
+      const repPercent = ((rep / totalVotes) * 100).toFixed(1);
+      const otherPercent = ((other / totalVotes) * 100).toFixed(1);
+
+      // Determine winner
+      let winner = '';
+      let winnerLead = '';
+      if (dem > rep && dem > other) {
+        const leadVotes = Math.round(dem - rep);
+        const leadPercent = ((dem - rep) / totalVotes * 100).toFixed(1);
+        winner = 'Biden';
+        winnerLead = `+${leadPercent}% +${leadVotes} votes`;
+      } else if (rep > dem && rep > other) {
+        const leadVotes = Math.round(rep - dem);
+        const leadPercent = ((rep - dem) / totalVotes * 100).toFixed(1);
+        winner = 'Trump';
+        winnerLead = `+${leadPercent}% +${leadVotes} votes`;
+      } else if (other > dem && other > rep) {
+        winner = 'Other';
+        winnerLead = '';
+      } else {
+        winner = 'Tie';
+        winnerLead = '';
+      }
+
+      const marginValue = value !== null && isFinite(value) ? (value * 100).toFixed(1) + '%' : 'N/A';
+
+      return `
+        <div style="color: black !important;">
+          <strong>${countyName}, Block Group ${blockGroup}</strong><br/>
+          <strong>Biden:</strong> ${demPercent}% (${Math.round(dem)} votes)<br/>
+          <strong>Trump:</strong> ${repPercent}% (${Math.round(rep)} votes)<br/>
+          <strong>Other:</strong> ${otherPercent}% (${Math.round(other)} votes)<br/>
+          <strong>Winner:</strong> ${winner} ${winnerLead ? winnerLead : ''}<br/>
+          <strong>Margin:</strong> ${marginValue}
+        </div>
+      `;
+    } else {
+      // Turnout map: Show Voted vs Non Voters with counts and percentages
+      const dem = parseFloat(row[demField]) || 0;
+      const rep = parseFloat(row[repField]) || 0;
+      const other = parseFloat(row[otherField]) || 0;
+      const nonVoter = parseFloat(row[nonVoterField]) || 0;
+      const voted = dem + rep + other;
+      const total = voted + nonVoter;
+
+      if (total === 0) {
+        return `<div style="color: black !important;"><strong>${countyName}, Block Group ${blockGroup}</strong><br/>No data</div>`;
+      }
+
+      const votedPercent = ((voted / total) * 100).toFixed(1);
+      const nonVoterPercent = ((nonVoter / total) * 100).toFixed(1);
+      const turnoutValue = value !== null && isFinite(value) ? value.toFixed(1) + '%' : 'N/A';
+
+      return `
+        <div style="color: black !important;">
+          <strong>${countyName}, Block Group ${blockGroup}</strong><br/>
+          <strong>Voted:</strong> ${votedPercent}% (${Math.round(voted)} votes)<br/>
+          <strong>Non Voters:</strong> ${nonVoterPercent}% (${Math.round(nonVoter)} votes)<br/>
+          <strong>Turnout:</strong> ${turnoutValue}
+        </div>
+      `;
+    }
   }
 
   // Create legend
@@ -342,8 +399,8 @@
     if (!legendContainer) return;
 
     const title = currentMetric === 'margin'
-      ? `${RACES[currentRace].label} - Margin (Dem - Rep) / Total`
-      : `${RACES[currentRace].label} - Turnout %`;
+      ? `${RACES[currentRace].label} - 2020 Vote Margin`
+      : `${RACES[currentRace].label} - 2020 Turnout`;
 
     let html = `<div class="map-legend" style="background: white !important; padding: 10px; border-radius: 5px; box-shadow: 0 1px 5px rgba(0,0,0,0.4);"><strong style="opacity: 1; color: black !important;">${title}</strong><br/>`;
     

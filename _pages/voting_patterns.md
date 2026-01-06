@@ -22,8 +22,8 @@ map: true
       <div class="col-md-6 mb-3">
         <label for="metric-select" class="form-label"><strong>Select Metric:</strong></label>
         <select id="metric-select" class="form-select">
-          <option value="margin">Margin (Dem - Rep) / Total</option>
-          <option value="turnout">Turnout %</option>
+          <option value="margin">2020 Vote Margin</option>
+          <option value="turnout">2020 Turnout</option>
         </select>
       </div>
     </div>

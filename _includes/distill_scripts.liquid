@@ -1,16 +1,20 @@
 <!-- jQuery -->
 <script
   src="{{ site.third_party_libraries.jquery.url.js }}"
+{% if jekyll.environment == "production" %}
   integrity="{{ site.third_party_libraries.jquery.integrity.js }}"
   crossorigin="anonymous"
+{% endif %}
 ></script>
 
 <!-- Bootsrap & MDB scripts -->
 <script src="{{ '/assets/js/bootstrap.bundle.min.js' | relative_url }}"></script>
 <script
   src="{{ site.third_party_libraries.mdb.url.js }}"
+{% if jekyll.environment == "production" %}
   integrity="{{ site.third_party_libraries.mdb.integrity.js }}"
   crossorigin="anonymous"
+{% endif %}
 ></script>
 
 <!-- Custom overrides -->
@@ -21,15 +25,19 @@
   <script
     defer
     src="{{ site.third_party_libraries.mermaid.url.js }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.mermaid.integrity.js }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
   {% if page.mermaid.zoomable %}
     <script
       defer
       src="{{ site.third_party_libraries.d3.url.js }}"
+{% if jekyll.environment == "production" %}
       integrity="{{ site.third_party_libraries.d3.integrity.js }}"
       crossorigin="anonymous"
+{% endif %}
     ></script>
   {% endif %}
   <script defer src="{{ '/assets/js/mermaid-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
@@ -40,8 +48,10 @@
   <!-- diff2html doesn't go well with Bootstrap Table -->
   <script
     src="{{ site.third_party_libraries.diff2html.url.js }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.diff2html.integrity.js }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
   <script defer src="{{ '/assets/js/diff2html-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
 {% endif %}
@@ -50,8 +60,10 @@
   <!-- Leaflet -->
   <script
     src="{{ site.third_party_libraries.leaflet.url.js }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.leaflet.integrity.js }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
   <script defer src="{{ '/assets/js/leaflet-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
 {% endif %}
@@ -61,8 +73,10 @@
   <script
     defer
     src="{{ site.third_party_libraries.chartjs.url.js }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.chartjs.integrity.js }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
   <script defer src="{{ '/assets/js/chartjs-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
 {% endif %}
@@ -71,14 +85,18 @@
   <!-- ECharts -->
   <script
     src="{{ site.third_party_libraries.echarts.url.js.library }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.echarts.integrity.js.library }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
   {% if site.enable_darkmode %}
     <script
       src="{{ site.third_party_libraries.echarts.url.js.dark_theme }}"
+{% if jekyll.environment == "production" %}
       integrity="{{ site.third_party_libraries.echarts.integrity.js.dark_theme }}"
       crossorigin="anonymous"
+{% endif %}
     ></script>
   {% endif %}
   <script defer src="{{ '/assets/js/echarts-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
@@ -89,8 +107,10 @@
   <script
     defer
     src="{{ site.third_party_libraries.plotly.url.js }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.plotly.integrity.js }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
   <script defer src="{{ '/assets/js/plotly-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
 {% endif %}
@@ -100,20 +120,26 @@
   <script
     defer
     src="{{ site.third_party_libraries.vega.url.js }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.vega.integrity.js }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
   <script
     defer
     src="{{ site.third_party_libraries.vega-lite.url.js }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.vega-lite.integrity.js }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
   <script
     defer
     src="{{ site.third_party_libraries.vega-embed.url.js }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.vega-embed.integrity.js }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
   <script defer src="{{ '/assets/js/vega-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
 {% endif %}
@@ -123,8 +149,10 @@
   <script
     defer
     src="https://tikzjax.com/v1/tikzjax.js"
+{% if jekyll.environment == "production" %}
     integrity="sha256-+1qyucCXRZJrCg3lm3KxRt/7WXaYhBid4/1XJRHGB1E="
     crossorigin="anonymous"
+{% endif %}
   ></script>
 {% endif %}
 
@@ -143,8 +171,10 @@
   <script
     defer
     src="{{ site.third_party_libraries.medium_zoom.url.js }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.medium_zoom.integrity.js }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
   <script defer src="{{ '/assets/js/zoom.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}
@@ -160,8 +190,10 @@
   <script
     defer
     src="{{ site.third_party_libraries.bootstrap-table.url.js }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.bootstrap-table.integrity.js }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
 {% endif %}
 
@@ -182,8 +214,10 @@
     type="text/javascript"
     id="MathJax-script"
     src="{{ site.third_party_libraries.mathjax.url.js }}"
+{% if jekyll.environment == "production" %}
     integrity="{{ site.third_party_libraries.mathjax.integrity.js }}"
     crossorigin="anonymous"
+{% endif %}
   ></script>
   <script src="{{ '/assets/js/mathjax-setup.js' | relative_url | bust_file_cache }}"></script>
   <script
@@ -230,16 +264,20 @@
     <script
       defer
       src="{{ site.third_party_libraries.img-comparison-slider.url.js }}"
+{% if jekyll.environment == "production" %}
       integrity="{{ site.third_party_libraries.img-comparison-slider.integrity.js }}"
       crossorigin="anonymous"
+{% endif %}
     ></script>
   {% endif %}
   {% if page.images.lightbox2 %}
     <script
       defer
       src="{{ site.third_party_libraries.lightbox2.url.js }}"
+{% if jekyll.environment == "production" %}
       integrity="{{ site.third_party_libraries.lightbox2.integrity.js }}"
       crossorigin="anonymous"
+{% endif %}
     ></script>
   {% endif %}
   {% if page.images.photoswipe %}
@@ -249,8 +287,10 @@
     <script
       defer
       src="{{ site.third_party_libraries.swiper.url.js }}"
+{% if jekyll.environment == "production" %}
       integrity="{{ site.third_party_libraries.swiper.integrity.js }}"
       crossorigin="anonymous"
+{% endif %}
     ></script>
   {% endif %}
   {% if page.images.spotlight %}
@@ -264,8 +304,10 @@
     <script
       defer
       src="{{ site.third_party_libraries.venobox.url.js }}"
+{% if jekyll.environment == "production" %}
       integrity="{{ site.third_party_libraries.venobox.integrity.js }}"
       crossorigin="anonymous"
+{% endif %}
     ></script>
     <script defer src="{{ '/assets/js/venobox-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
   {% endif %}
