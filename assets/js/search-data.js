@@ -16,6 +16,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
+        },{id: "nav-ny-voting-patterns-by-race",
+          title: "NY Voting Patterns by Race",
+          description: "Interactive map showing voting patterns by race and block group in New York using ecological inference estimates",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/voting_patterns/";
+          },
         },{id: "post-a-post-with-plotly-js",
         
           title: "a post with plotly.js",
