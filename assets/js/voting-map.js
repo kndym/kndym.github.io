@@ -110,23 +110,49 @@
     }
   }
 
+  function parseCsvLine(line) {
+    const values = [];
+    let current = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      const nextChar = line[i + 1];
+
+      if (char === '"' && inQuotes && nextChar === '"') {
+        current += '"';
+        i++;
+      } else if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === ',' && !inQuotes) {
+        values.push(current);
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+
+    values.push(current);
+    return values;
+  }
+
   // Load CSV data
   async function loadCSV() {
     if (csvData) return csvData;
     
     const baseUrl = getBaseUrl();
-    const csvUrl = `${baseUrl}/assets/data/estimates.csv`;
+    const csvUrl = `${baseUrl}/assets/data/ny_estimates_min.csv`;
     
     try {
       const response = await fetch(csvUrl);
       const text = await response.text();
-      const lines = text.split('\n');
-      const headers = lines[0].split(',');
+      const lines = text.split(/\r?\n/);
+      const headers = parseCsvLine(lines[0]);
       
       csvData = {};
       for (let i = 1; i < lines.length; i++) {
         if (lines[i].trim()) {
-          const values = lines[i].split(',');
+          const values = parseCsvLine(lines[i]);
           const row = {};
           headers.forEach((header, index) => {
             row[header.trim()] = values[index] ? values[index].trim() : '';
@@ -143,29 +169,48 @@
     }
   }
 
+  function getRaceProbabilities(race, row) {
+    const racePrefix = RACES[race].prefix;
+    const demProbField = `D_${racePrefix}_prob`;
+    const repProbField = `R_${racePrefix}_prob`;
+    const otherProbField = `O_${racePrefix}_prob`;
+    const nonVoterProbField = `N_${racePrefix}_prob`;
+    const hasProbFields = demProbField in row || repProbField in row || otherProbField in row || nonVoterProbField in row;
+    if (!hasProbFields) {
+      return { dem: 0, rep: 0, other: 0, nonVoter: 0, hasData: false };
+    }
+
+    const demProb = parseFloat(row[demProbField]) || 0;
+    const repProb = parseFloat(row[repProbField]) || 0;
+    const otherProb = parseFloat(row[otherProbField]) || 0;
+    const nonVoterProb = parseFloat(row[nonVoterProbField]) || 0;
+
+    return {
+      dem: demProb,
+      rep: repProb,
+      other: otherProb,
+      nonVoter: nonVoterProb,
+      hasData: true
+    };
+  }
+
   // Calculate metric value
   function calculateMetric(race, metric, row) {
-    const racePrefix = RACES[race].prefix;
-    const demField = `votes_D_${racePrefix}`;
-    const repField = `votes_R_${racePrefix}`;
-    const otherField = `votes_O_${racePrefix}`;
-    const nonVoterField = `votes_N_${racePrefix}`;
-
-    const dem = parseFloat(row[demField]) || 0;
-    const rep = parseFloat(row[repField]) || 0;
-    const other = parseFloat(row[otherField]) || 0;
-    const nonVoter = parseFloat(row[nonVoterField]) || 0;
+    const probs = getRaceProbabilities(race, row);
+    if (!probs.hasData) return null;
+    const dem = probs.dem;
+    const rep = probs.rep;
+    const other = probs.other;
+    const nonVoter = probs.nonVoter;
 
     if (metric === 'margin') {
-      // Margin = (Dem - Rep) / (Dem + Rep + Other) - excluding non-voters from denominator
+      // Margin based on probabilities excluding non-voters
       const totalVotes = dem + rep + other;
-      if (totalVotes === 0) return null;
+      if (totalVotes === 0) return 0;
       return (dem - rep) / totalVotes;
     } else {
-      // Turnout = (Dem + Rep + Other) / (Dem + Rep + Other + NonVoter) * 100
-      const total = dem + rep + other + nonVoter;
-      if (total === 0) return null;
-      return ((dem + rep + other) / total) * 100;
+      // Turnout = (1 - NonVoter) * 100 based on probabilities
+      return (1 - nonVoter) * 100;
     }
   }
 
@@ -262,6 +307,10 @@
         }
       });
     }
+
+    if (metric === 'margin') {
+      return { values, min: -1, max: 1 };
+    }
     
     const min = values.length > 0 ? Math.min(...values) : 0;
     const max = values.length > 0 ? Math.max(...values) : 1;
@@ -311,40 +360,37 @@
     }
 
     const value = calculateMetric(currentRace, currentMetric, row);
-    const racePrefix = RACES[currentRace].prefix;
-    const demField = `votes_D_${racePrefix}`;
-    const repField = `votes_R_${racePrefix}`;
-    const otherField = `votes_O_${racePrefix}`;
-    const nonVoterField = `votes_N_${racePrefix}`;
+    const probs = getRaceProbabilities(currentRace, row);
+    if (!probs.hasData) {
+      return `<div style="color: black !important;"><strong>${countyName}, Block Group ${blockGroup}</strong><br/>No data available</div>`;
+    }
+    const dem = probs.dem;
+    const rep = probs.rep;
+    const other = probs.other;
+    const nonVoter = probs.nonVoter;
 
     if (currentMetric === 'margin') {
-      // Margin map: Show Dem, Rep, and Other with counts, percentages, and winner
-      const dem = parseFloat(row[demField]) || 0;
-      const rep = parseFloat(row[repField]) || 0;
-      const other = parseFloat(row[otherField]) || 0;
+      // Margin map: Show Dem, Rep, and Other probabilities with winner
       const totalVotes = dem + rep + other;
 
-      if (totalVotes === 0) {
-        return `<div style="color: black !important;"><strong>${countyName}, Block Group ${blockGroup}</strong><br/>No votes</div>`;
-      }
-
-      const demPercent = ((dem / totalVotes) * 100).toFixed(1);
-      const repPercent = ((rep / totalVotes) * 100).toFixed(1);
-      const otherPercent = ((other / totalVotes) * 100).toFixed(1);
+      const demPercent = (dem * 100).toFixed(1);
+      const repPercent = (rep * 100).toFixed(1);
+      const otherPercent = (other * 100).toFixed(1);
 
       // Determine winner
       let winner = '';
       let winnerLead = '';
-      if (dem > rep && dem > other) {
-        const leadVotes = Math.round(dem - rep);
+      if (totalVotes === 0) {
+        winner = 'No votes';
+        winnerLead = '';
+      } else if (dem > rep && dem > other) {
         const leadPercent = ((dem - rep) / totalVotes * 100).toFixed(1);
         winner = 'Biden';
-        winnerLead = `+${leadPercent}% +${leadVotes} votes`;
+        winnerLead = `+${leadPercent}%`;
       } else if (rep > dem && rep > other) {
-        const leadVotes = Math.round(rep - dem);
         const leadPercent = ((rep - dem) / totalVotes * 100).toFixed(1);
         winner = 'Trump';
-        winnerLead = `+${leadPercent}% +${leadVotes} votes`;
+        winnerLead = `+${leadPercent}%`;
       } else if (other > dem && other > rep) {
         winner = 'Other';
         winnerLead = '';
@@ -358,35 +404,25 @@
       return `
         <div style="color: black !important;">
           <strong>${countyName}, Block Group ${blockGroup}</strong><br/>
-          <strong>Biden:</strong> ${demPercent}% (${Math.round(dem)} votes)<br/>
-          <strong>Trump:</strong> ${repPercent}% (${Math.round(rep)} votes)<br/>
-          <strong>Other:</strong> ${otherPercent}% (${Math.round(other)} votes)<br/>
+          <strong>Biden:</strong> ${demPercent}%<br/>
+          <strong>Trump:</strong> ${repPercent}%<br/>
+          <strong>Other:</strong> ${otherPercent}%<br/>
           <strong>Winner:</strong> ${winner} ${winnerLead ? winnerLead : ''}<br/>
           <strong>Margin:</strong> ${marginValue}
         </div>
       `;
     } else {
-      // Turnout map: Show Voted vs Non Voters with counts and percentages
-      const dem = parseFloat(row[demField]) || 0;
-      const rep = parseFloat(row[repField]) || 0;
-      const other = parseFloat(row[otherField]) || 0;
-      const nonVoter = parseFloat(row[nonVoterField]) || 0;
+      // Turnout map: Show Voted vs Non Voters probabilities
       const voted = dem + rep + other;
-      const total = voted + nonVoter;
-
-      if (total === 0) {
-        return `<div style="color: black !important;"><strong>${countyName}, Block Group ${blockGroup}</strong><br/>No data</div>`;
-      }
-
-      const votedPercent = ((voted / total) * 100).toFixed(1);
-      const nonVoterPercent = ((nonVoter / total) * 100).toFixed(1);
+      const votedPercent = (voted * 100).toFixed(1);
+      const nonVoterPercent = (nonVoter * 100).toFixed(1);
       const turnoutValue = value !== null && isFinite(value) ? value.toFixed(1) + '%' : 'N/A';
 
       return `
         <div style="color: black !important;">
           <strong>${countyName}, Block Group ${blockGroup}</strong><br/>
-          <strong>Voted:</strong> ${votedPercent}% (${Math.round(voted)} votes)<br/>
-          <strong>Non Voters:</strong> ${nonVoterPercent}% (${Math.round(nonVoter)} votes)<br/>
+          <strong>Voted:</strong> ${votedPercent}%<br/>
+          <strong>Non Voters:</strong> ${nonVoterPercent}%<br/>
           <strong>Turnout:</strong> ${turnoutValue}
         </div>
       `;

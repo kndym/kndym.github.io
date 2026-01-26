@@ -16,3 +16,5 @@ vendor
 _config.yml
 _config.yml
 *.yml
+*.csv
+!assets/data/ny_estimates_min.csv
