@@ -4,6 +4,8 @@ title: NY Voting Patterns by Race
 permalink: /voting_patterns/
 description: Interactive map showing voting patterns by race and block group in New York using ecological inference estimates
 map: true
+nav: true
+nav_order: 7
 ---
 
 <div class="voting-map-container">
