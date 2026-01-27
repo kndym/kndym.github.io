@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Sophomore Computer Science Major @ Howard University
+subtitle: Applied Mathematics @ Howard University
 
 profile:
   align: right
@@ -26,9 +26,9 @@ latest_posts:
 
 ---
 
-I am **Kevin Ndayishimiye**, a sophomore undergraduate at **Howard University** pursuing a major in Computer Science with minors in Mathematics and Physics. I am also honored to be a **Presidential Scholar** at the university.
+I am **Kevin Ndayishimiye**, a sophomore at **Howard University** pursuing a B.S. in Mathematics with a concentration in Applied Mathematics and a minor in Computer Science.
 
-My research interests primarily lie in the intersection of **Applied Mathematics and Statistics**. Currently, I am focused on developing **Spatially Smoothed Ecological Inference Models**, contributing to more robust and accurate statistical analysis of aggregated data.
+My research focuses on the intersection of **Applied Mathematics**, **Optimization**, and **Statistical Inference**. I am currently an undergraduate researcher working on the **Prescribed Intensity Problem** in geometric optics, bridging classical optics with **Optimal Transport theory** and the **Monge-Ampère Equation**. I am also developing **Ecological Inference models** that use spatial smoothing and convex optimization to estimate latent voting patterns from aggregate data.
 
-Beyond my core coursework, I serve as a Student Researcher at the [HBCU IBM Quantum Center at Howard University](https://www.hbcuquantumcenter.org/), where I explore emerging applications in quantum computing. I am deeply committed to education and community outreach, which I express through my role as a middle school tutor at the [Howard University Middle School for Mathematics and Science (MS)²](https://hu-ms2.org/).
+On the side, I build projects that apply these ideas — including [SpadesAI](/spades/), a reinforcement learning agent using Monte Carlo Tree Search and deep neural networks, and a [Vote Estimator](/vote-estimator/) that visualizes demographic voting patterns across New York.
 

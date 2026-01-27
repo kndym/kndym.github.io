@@ -1,11 +1,11 @@
 {
   "basics": {
     "name": "Kevin Ndayishimiye",
-    "label": "Presidential Scholar, B.S. in Computer Science Student",
+    "label": "B.S. Mathematics (Applied), Minor in Computer Science",
     "image": "",
     "email": "kevin.nday12@gmail.com",
     "phone": "716-424-6256",
-    "url": "https://github.com/kndym",
+    "url": "https://kndym.github.io/",
     "summary": "",
     "location": {
       "city": "Washington, D.C.",
@@ -24,19 +24,60 @@
       }
     ]
   },
+  "education": [
+    {
+      "institution": "Howard University",
+      "location": "Washington, D.C.",
+      "url": "",
+      "area": "Mathematics, Concentration in Applied Mathematics",
+      "studyType": "Bachelor of Science",
+      "startDate": "2024-08-01",
+      "endDate": "2028-05-01",
+      "score": "3.8/4.0 GPA",
+      "courses": [
+        "Minor: Computer Science"
+      ]
+    }
+  ],
   "work": [
     {
-      "name": "Castner Incorporated",
-      "position": "Data Analytics Intern",
+      "name": "Howard University",
+      "position": "Undergraduate Researcher (Geometric Optics)",
       "url": "",
-      "startDate": "2023-08-01",
-      "endDate": "2025-08-01",
-      "summary": "",
+      "startDate": "2025-12-01",
+      "endDate": "",
+      "summary": "Supervisor: Dr. Henok Mawi",
       "highlights": [
-        "Contributed to academic research on disaster relief, focusing on preparedness for older adults and African American/Black communities.",
-        "Wrote programs in R to manage and analyze the Federal Emergency Management Agency (FEMA) National Household Survey database.",
-        "Developed accessible explanations of machine learning concepts for general audiences."
+        "Investigating the Prescribed Intensity Problem, a non-linear inverse problem focused on designing freeform lens geometries that map source light distributions to target measures.",
+        "Bridging classical optics with Optimal Transport theory, utilizing the Monge-Ampère Equation to model the transformation of probability densities via refraction and reflection.",
+        "Developed a computational framework in MATLAB for simulating ray-tracing on non-standard surfaces; currently transitioning to numerical solvers for non-linear PDEs."
       ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Vote Estimator (Ecological Inference)",
+      "summary": "Developing a custom Ecological Inference (EI) model to estimate latent vote probability vectors from aggregate precinct data.",
+      "highlights": [
+        "Formulated a compound loss function combining L2 data-fit, neighbor-weighted Laplacian smoothing, and entropy regularization to solve for non-degenerate probability distributions.",
+        "Implementing convex optimization via the Adam optimizer to minimize loss over the probability simplex, utilizing PyQGIS to construct spatial adjacency matrices."
+      ],
+      "startDate": "2025-12-01",
+      "endDate": "",
+      "url": "https://kndym.github.io/vote-estimator/",
+      "keywords": ["Python", "PyQGIS", "NumPy"]
+    },
+    {
+      "name": "SpadesAI (Reinforcement Learning)",
+      "summary": "Engineered a game-playing agent using Monte Carlo Tree Search (MCTS) guided by deep neural networks, similar to the AlphaZero architecture.",
+      "highlights": [
+        "Implemented PUCT (Predictor Upper Confidence Trees) to balance exploration/exploitation across a state space of approximately 10^20.",
+        "Trained three distinct neural networks (Bidding, Playing, and Value) via self-play reinforcement learning, achieving a 2100+ Elo rating against human players."
+      ],
+      "startDate": "2025-07-01",
+      "endDate": "",
+      "url": "https://spades-game-v2.vercel.app",
+      "keywords": ["Python", "TensorFlow", "C++"]
     }
   ],
   "volunteer": [
@@ -45,139 +86,50 @@
       "position": "Youth Coordinator",
       "url": "",
       "startDate": "2023-10-01",
-      "endDate": "Present",
+      "endDate": "",
       "summary": "",
       "highlights": [
-        "Canvassed thousands of community members to build support for the restoration of Humboldt Parkway.",
-        "Fundraised hundreds of thousands of dollars to support a legal battle with the New York State Department of Transportation (NYSDOT).",
-        "Successfully won an injunction that required an Environmental Impact Statement (EIS) from the NYSDOT."
-      ]
-    }
-  ],
-  "education": [
-    {
-      "institution": "Howard University",
-      "location": "Washington, D.C.",
-      "url": "",
-      "area": "Computer Science (Minors in Math, Physics)",
-      "studyType": "B.S.",
-      "startDate": "2024-08-01",
-      "endDate": "2028-05-01",
-      "score": "3.8 GPA",
-      "courses": [
-        "Presidential Scholar"
-      ]
-    }
-  ],
-  "awards": [],
-  "certificates": [],
-  "publications": [
-    {
-      "name": "Co-author: Disaster Preparedness Interventions via Machine Learning on FEMA National Household Survey Data",
-      "publisher": "International Journal of Environmental Research and Public Health",
-      "releaseDate": "2024-05-01",
-      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11121406/",
-      "summary": "Contributed to a machine learning model that identified key factors in household disaster preparedness for older adults and African American/Black communities.",
-      "highlights": [
-        "The model analyzed 252 variables from over 15,000 participants in the FEMA National Household Survey.",
-        "The findings highlighted the need for targeted interventions to support financial resilience and equitable resource access."
+        "Organized community canvassing efforts to support the restoration of Humboldt Parkway.",
+        "Assisted in fundraising efforts supporting legal action against the NYSDOT.",
+        "Contributed to a campaign that successfully resulted in a court injunction requiring an Environmental Impact Statement (EIS)."
       ]
     }
   ],
   "skills": [
     {
-      "name": "Languages",
-      "level": "Expert",
+      "name": "Mathematical Computing",
+      "level": "",
       "keywords": [
-        "Python",
-        "C++",
+        "MATLAB",
+        "Python (NumPy/SciPy)",
         "R",
-        "Java",
-        "GDScript",
-        "JavaScript",
-        "HTML/CSS",
-        "SQL"
+        "LaTeX"
       ]
     },
     {
-      "name": "Web / APIs",
-      "level": "Proficient",
+      "name": "Statistical Modeling",
+      "level": "",
       "keywords": [
-        "REST",
-        "WSS (WebSocket)"
+        "Ecological Inference",
+        "Markov Random Fields",
+        "Monte Carlo Methods",
+        "Reinforcement Learning"
       ]
     },
     {
-      "name": "Developer Tools",
-      "level": "Proficient",
+      "name": "Numerical Methods",
+      "level": "",
       "keywords": [
-        "Git",
-        "GitHub",
-        "QGis",
-        "VS Code",
-        "Visual Studio"
-      ]
-    },
-    {
-      "name": "Libraries",
-      "level": "Proficient",
-      "keywords": [
-        "Pandas",
-        "NumPy",
-        "Matplotlib",
-        "TensorFlow",
-        "Scikit-learn",
-        "ONNX"
+        "Non-linear Optimization (Adam, Gradient Descent)",
+        "Numerical PDEs",
+        "Ray Tracing"
       ]
     }
   ],
+  "awards": [],
+  "certificates": [],
+  "publications": [],
   "languages": [],
   "interests": [],
-  "references": [],
-  "projects": [
-    {
-      "name": "Prediction Market Arbitrage Tracker",
-      "summary": "Engineered a system to compare order books and execute trades based on identified pricing inefficiencies.",
-      "highlights": [
-        "Utilized WebSocket (WSS) and REST APIs to stream real-time order book data from prediction markets like Kalshi and Polymarket."
-      ],
-      "startDate": "2025-05-01",
-      "endDate": "2025-07-01",
-      "url": "",
-      "keywords": ["Python", "WSS", "REST API"]
-    },
-    {
-      "name": "SpadesAI",
-      "summary": "Developed a non-deterministic algorithm for playing the card game Spades, using a combination of deep learning and Monte Carlo Tree Search (MCTS).",
-      "highlights": [
-        "Achieved a 2100 Elo rating in Competitive Online Spades games."
-      ],
-      "startDate": "2025-07-01",
-      "endDate": "Present",
-      "url": "https://worldofcardgames.com/spades-leaderboard",
-      "keywords": ["Python", "C++", "TensorFlow", "Scikit-learn", "ONNX"]
-    },
-    {
-      "name": "UrbanClass",
-      "summary": "Built a system to classify communities as urban, suburban, or rural based on both self-identification and data markers.",
-      "highlights": [
-        "The classification data is being used to help build election models for the 2026 and 2028 U.S. elections."
-      ],
-      "startDate": "2025-01-01",
-      "endDate": "2025-03-01",
-      "url": "",
-      "keywords": ["Python", "QGis", "Pandas"]
-    },
-    {
-      "name": "Avatar Platform Fighter",
-      "summary": "Collaborated an in a team of four to create Avatar: The Last Airbender themed platform fighting game for the 2025 BisonBytes Hackathon.",
-      "highlights": [
-        "Specific role was writing the core game logic in GDScript and JavaScript."
-      ],
-      "startDate": "2025-03-01",
-      "endDate": "2025-03-31",
-      "url": "",
-      "keywords": ["GDScript", "JavaScript", "HTML"]
-    }
-  ]
+  "references": []
 }
