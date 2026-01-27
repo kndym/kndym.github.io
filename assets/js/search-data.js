@@ -11,17 +11,24 @@ ninja.data = [{
     },
   },{id: "nav-cv",
           title: "cv",
-          description: "here&#39;s some cool stuff I&#39;ve done",
+          description: "",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "nav-ny-voting-patterns-by-race",
-          title: "NY Voting Patterns by Race",
-          description: "Interactive map showing voting patterns by race and block group in New York using ecological inference estimates",
+        },{id: "nav-spades-ai",
+          title: "spades ai",
+          description: "A deep learning card game bot using Monte Carlo Tree Search and Neural Networks",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/voting_patterns/";
+            window.location.href = "/spades/";
+          },
+        },{id: "nav-vote-estimator",
+          title: "vote estimator",
+          description: "Interactive map showing estimated voting patterns by race in New York using ecological inference",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/vote-estimator/";
           },
         },{id: "post-a-post-with-plotly-js",
         
