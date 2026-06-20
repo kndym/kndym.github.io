@@ -9,28 +9,7 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-cv",
-          title: "cv",
-          description: "",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/cv/";
-          },
-        },{id: "nav-spades-ai",
-          title: "spades ai",
-          description: "A deep learning card game bot using Monte Carlo Tree Search and Neural Networks",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/spades/";
-          },
-        },{id: "nav-vote-estimator",
-          title: "vote estimator",
-          description: "Interactive map showing estimated voting patterns by race in New York using ecological inference",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/vote-estimator/";
-          },
-        },{id: "post-a-post-with-plotly-js",
+  },{id: "post-a-post-with-plotly-js",
         
           title: "a post with plotly.js",
         
@@ -474,20 +453,6 @@ ninja.data = [{
         section: 'Socials',
         handler: () => {
           window.open("https://www.linkedin.com/in/kevinnday", "_blank");
-        },
-      },{
-        id: 'social-medium',
-        title: 'Medium',
-        section: 'Socials',
-        handler: () => {
-          window.open("https://medium.com/@kndym", "_blank");
-        },
-      },{
-        id: 'social-x',
-        title: 'X',
-        section: 'Socials',
-        handler: () => {
-          window.open("https://twitter.com/kndymx", "_blank");
         },
       },{
       id: 'light-theme',
