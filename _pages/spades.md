@@ -3,7 +3,7 @@ layout: page
 title: spades ai
 permalink: /spades/
 description: A deep learning card game bot using Monte Carlo Tree Search and Neural Networks
-nav: true
+nav: false
 nav_order: 3
 ---
 

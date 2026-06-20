@@ -4,7 +4,7 @@ title: vote estimator
 permalink: /vote-estimator/
 description: Interactive map showing estimated voting patterns by race in New York using ecological inference
 map: true
-nav: true
+nav: false
 nav_order: 7
 ---
 
