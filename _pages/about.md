@@ -5,7 +5,7 @@ permalink: /
 hide_title: true
 
 profile:
-  align: right
+  align: left
   image: IMG_0147.jpg
   image_circular: false
 

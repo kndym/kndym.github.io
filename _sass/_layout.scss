@@ -38,6 +38,49 @@ body.sticky-bottom-footer {
   }
 }
 
+.home-page {
+  article {
+    display: flex;
+    min-height: calc(100vh - 174px);
+    flex-direction: column;
+  }
+
+  .about-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+
+    .profile {
+      float: none !important;
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  .social {
+    margin-top: auto;
+    padding-top: 2rem;
+
+    .contact-icons {
+      font-size: 2.6667rem;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .home-page {
+    .about-intro {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .social {
+      padding-top: 1.5rem;
+    }
+  }
+}
+
 // TODO: redefine content layout.
 
 /******************************************************************************
