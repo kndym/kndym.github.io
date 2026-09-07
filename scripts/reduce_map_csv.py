@@ -28,6 +28,20 @@ KEEP_COLUMNS = [
 ]
 
 
+def _round_prob(value: str) -> str:
+    """Round probability columns to 3 decimals.
+
+    The browser renders these as choropleth colours, so full float64
+    precision is wasted bytes: at 16 significant digits the output CSV is
+    ~97 MiB -- a slow page load, and close to GitHub's 100 MiB per-file
+    limit. Rounding to 3 dp takes it to ~33 MiB with no visible difference.
+    """
+    try:
+        return f"{float(value):.3f}"
+    except (TypeError, ValueError):
+        return value
+
+
 def reduce_csv(input_path: Path, output_path: Path) -> None:
     with input_path.open("r", newline="", encoding="utf-8") as infile:
         reader = csv.DictReader(infile)
@@ -43,7 +57,9 @@ def reduce_csv(input_path: Path, output_path: Path) -> None:
             writer = csv.DictWriter(outfile, fieldnames=KEEP_COLUMNS)
             writer.writeheader()
             for row in reader:
-                writer.writerow({col: row.get(col, "") for col in KEEP_COLUMNS})
+                writer.writerow(
+                    {col: _round_prob(row.get(col, "")) for col in KEEP_COLUMNS}
+                )
 
 
 def main() -> None:
