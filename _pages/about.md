@@ -24,3 +24,5 @@ latest_posts:
 ---
 
 Hi, I'm Kevin Ndayishimiye, a rising junior in Mathematics at Howard University. Right now I'm working at the Equitable Data Science REU at UMN Twin Cities. I am also working on Optimal Transport algorithms for Optics Problems with Henok Mawi at my home institution. I am currently working on a personal blog, stay tuned for my first post!
+
+here's a cool project i made: [2026 Midterm Simulator](https://aweakprior.com)
